@@ -1,0 +1,47 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+  <table>
+  <tr>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/tests">Управление тестами</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  </table>
+
+  <table>
+   <tr>
+    <td><a href="<?php echo $this->baseUrl?>/admin/questions/add/test/<?php echo $this->test_id?>">Добавить вопрос</a></td>
+  </tr>  
+  </table>
+
+  
+  <table>
+  <tr>
+      <th class="top" scope="col" width="65%">Вопрос</th>
+      <th class="top" scope="col" width="10%">Тип</th>
+      <th class="top" scope="col" width="10%">Активен</th>
+      <th class="top" scope="col" width="15%">Действие</th>
+      
+  </tr>
+  <?php foreach($this->questions as $question) { ?>
+  <tr>
+      <td><?php echo $question['qst_text'];?></td>
+      <td><?php echo $question['qst_type'];?></td>      
+      <td><?php echo $question['qst_is_enabled'];?></td>
+    
+      <td>
+<?php /*      
+        <a href="<?php echo $this->baseUrl;?>/admin/questions/edit/id/<?php echo $question['qst_id'];?>">Редактировать</a><br />
+*/ ?>        
+        <a href="<?php echo $this->baseUrl;?>/admin/questions/stat/test/<?php echo $this->test_id?>/qst/<?php echo $question['qst_id'];?>">Статистика</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/questions/delete/test/<?php echo $this->test_id?>/qst/<?php echo $question['qst_id']?>" onclick="return confirm('Вы действительно хотите удалить данный вопрос?')">Удалить</a>
+        </td>
+  </tr>
+  <?php } ?>
+  </table>
+</div>          
+<hr class="clear-contentunit" />   
+<?php echo $this->render('footer.phtml');?>

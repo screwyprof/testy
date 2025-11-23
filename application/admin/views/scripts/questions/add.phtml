@@ -1,0 +1,53 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+  <div class="contactform">
+    <form action="<?php echo $this->baseUrl?>/admin/questions/add" method="post">
+    <fieldset> <legend>&nbsp;Параметры вопроса&nbsp;</legend>
+
+      <p><label for="qst_is_enabled" class="left">Вопрос активен:</label>
+         <input type="checkbox" name="qst_is_enabled" id="qst_is_enabled"
+                class="checkbox" checked="true" tabindex="1" />
+      </p>
+
+      <p><label for="qst_type" class="left">Тип вопроса:</label>
+         <select name="qst_type" id="qst_type" class="combo">
+           <option value="1">Прямой ввод</option>
+           <option value="2">Последовательность</option>
+           <option value="3">Множественный выбор</option>
+           <option value="4">Множество ответов</option>
+           <option value="5">Порядок действий</option>
+         </select>
+      </p>
+
+      <p><label for="qst_text" class="left">Вопрос:</label>
+         <textarea name="qst_text" id="qst_text"
+                   cols="45" rows="5" tabindex="3"></textarea>
+      </p>
+    </fieldset>
+
+    <fieldset> <legend>&nbsp;Варианты ответа&nbsp;</legend>
+
+        <?php for ($i = 0; $i < 10; $i++) { ?>
+        <p><label for="ans_text[<?php echo $i ?>]" class="left">Вариант <?php echo $i + 1 ?>:</label>
+         <textarea name="ans_text[<?php echo $i ?>]" id="ans_text[<?php echo $i ?>]"
+                   cols="45" rows="3"></textarea>
+        </p>
+
+         <p><label for="ans_correct[<?php echo $i ?>]" class="left">Верно:</label>
+         <input type="checkbox" name="ans_correct[<?php echo $i ?>]" id="ans_correct[<?php echo $i ?>]"
+                class="checkbox" />
+         </p>
+        <?php } ?>
+
+        <input type="hidden" name="test_id" value="<?php echo $this->test_id?>" />
+      <p>
+        <input type="submit" name="cancel" id="cancel" class="button" value="Отмена" tabindex="9" />
+        <input type="submit" name="submit" id="submit" class="button" value="Создать" tabindex="10" />
+      </p>
+    </fieldset>
+    </form>
+  </div>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

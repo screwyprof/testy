@@ -1,0 +1,49 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+<?php if (isset($this->usr)) {?>
+  <div class="testform">
+  <fieldset>
+  <form action="<?php echo $this->baseUrl ?>/admin/users/delete" method="post">
+ <table>
+  <tr>
+      <th class="top" scope="col">Пользователь</th>
+      <th class="top" scope="col">Фамилия</th>
+      <th class="top" scope="col">Имя</th>
+      <th class="top" scope="col">Отчество</th>
+      <th class="top" scope="col">e-mail</th>
+      <th class="top" scope="col">Активен</th>
+  </tr>
+  <tr>
+      <td><?php echo $this->escape($this->usr['usr_login']);?></td>
+      <td><?php echo $this->escape($this->usr['usr_lastname']);?></td>
+      <td><?php echo $this->escape($this->usr['usr_firstname']);?></td>
+      <td><?php echo $this->escape($this->usr['usr_thirdname']);?></td>
+      <td><?php echo $this->escape($this->usr['usr_email']);?></td>
+      <td><?php echo $this->escape($this->usr['usr_is_enabled']);?></td>
+  </tr>
+  </table>
+
+
+	<table>
+	<tr>
+	  <td>Вы действительно хотите удалить пользователя?</td>
+	</tr>
+	<tr>
+	  <td>
+	  	<input type="hidden" name="id" value="<?php echo $this->escape($this->usr['usr_id']);?>" />
+		<input type="submit" name="del" value="Yes" />
+		<input type="submit" name="del" value="No" />
+	  </td>
+	</tr>
+	</table>
+	<br />
+  </form>
+  </fieldset>
+  </div>
+  <?php } else { ?>
+  <p>Пользователь не найден в базе данных.</p>
+  <?php }?>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

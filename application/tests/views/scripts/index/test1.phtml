@@ -1,0 +1,157 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+
+<?php
+function writeVTimer($hours, $minutes, $seconds) {
+    if($hours<0) $hours=0; if($minutes<0) $minutes = 0; if($seconds<0) $seconds=0;
+    ?><script type="text/javascript">
+     /* <![CDATA[ */
+    var dStopTime = new Date();
+    dStopTime.setHours(dStopTime.getHours()<?php if($hours) echo "+$hours"; ?>,dStopTime.getMinutes()<?php if($minutes) echo "+$minutes"; ?>,dStopTime.getSeconds()<?php if($seconds) echo "+$seconds"; ?>);
+    var clockID = 0;
+    function UpdateClock() {
+        if(clockID) {
+            clearTimeout(clockID);
+            clockID = 0;
+        }
+        var dNow = new Date();
+        if(dNow < dStopTime) {
+            dNow.setHours(dStopTime.getHours()-dNow.getHours(),dStopTime.getMinutes()-dNow.getMinutes(),dStopTime.getSeconds()-dNow.getSeconds());
+            strContent = "&nbsp;<b>"+setLeadingZero(dNow.getHours())+":"+setLeadingZero(dNow.getMinutes())+":"+setLeadingZero(dNow.getSeconds())+"</b>&nbsp;";
+            if(dNow.getMinutes()<1) strContent="<font color=\"#ff0000\">"+strContent+"</font>";
+            document.getElementById("vtimer").innerHTML = strContent;
+            clockID = setTimeout("UpdateClock()", 500);
+        } else {
+            clearTimeout(clockID);
+            clockID = 0;
+            document.getElementById("vtimer").innerHTML = "<b>00:00:00</b>";
+            alert('Время тестирования закончено!')
+        }
+    }
+    function setLeadingZero(i) {
+        return (i<10) ? "0"+i : i;
+    }
+    clockID = setTimeout("UpdateClock()", 500);
+    /* ]]> */
+    </script>
+    <?php
+}
+?>
+
+<div class="testform">
+<form method="post" action="<?php echo $this->baseUrl ?>/tests/index/test1">
+<fieldset>
+
+
+<?php writeVTimer(0, 0, $this->test_time); ?>
+<table>
+<tr>
+  <td>Время: <span id="vtimer"></span></td>
+</tr>
+</table>
+
+
+<?php for($qst_curr = 0; $qst_curr < $this->qst_count; $qst_curr++) { ?>
+
+<table>
+<tr>
+<th class="top"><?php echo $qst_curr + 1?></th>
+<td><?php echo $this->escape($this->question[$qst_curr]['qst_text']);?></td>
+</tr>
+<?php
+switch ($this->question[$qst_curr]['qst_type']) {
+    case 1:
+        ?>
+        <tr>
+        <th colspan="2">
+        <textarea name="v[<?php echo $qst_curr;?>][]"
+        class="textarea"><?php if ($this->is_show_ans) { echo $this->variants[$qst_curr][0]['ans_text']; }?></textarea>
+        </th>
+        </tr>
+        <?php
+        break;
+    case 2:
+
+        ?>
+        <?php foreach ($this->variants[$qst_curr] as $i => $variant) { ?>
+        <tr>
+        <th>
+        <select name="v[<?php echo $qst_curr;?>][]"
+        id="v<?php echo $qst_curr . $i + 1;?>">
+        <option  value="0">0</option>
+        <?php for ($j = 1; $j <= sizeof($this->variants[$qst_curr]); $j++) { ?>
+        <option value="<?php echo $j?>" <?php if ($this->is_show_ans && $variant['ans_is_correct'] == $j) { ?>selected="true"<?php }?>><?php echo $j?></option>
+        <?php }?>
+        </select>
+        </th>
+        <td><label for="v<?php echo $qst_curr . $i + 1;?>"><?php echo $variant['ans_text']?></label></td>
+        </tr>
+        <?php }?>
+        <?php
+        break;
+    case 3:
+        foreach ($this->variants[$qst_curr] as $num => $variant) {
+            ?>
+            <tr>
+            <th><input type="radio" name="v[<?php echo $qst_curr;?>][]"
+            value="<?php echo $num + 1?>" id="v<?php echo $qst_curr . $num + 1?>"
+            class="checkbox" <?php if ($this->is_show_ans && $variant['ans_is_correct']) { ?>checked="true"<?php }?>/>
+            </th>
+
+            <td><label for="v<?php echo $qst_curr . $num + 1?>"><?php echo $variant['ans_text']?></label></td>
+            </tr>
+
+            <?php
+        }
+        ?>
+        <?php
+        break;
+
+    case 4:
+        foreach ($this->variants[$qst_curr] as $num => $variant) {
+            ?>
+            <tr>
+            <th><input type="checkbox" name="v[<?php echo $qst_curr;?>][]"
+            value="<?php echo $num + 1?>" id="v<?php echo $qst_curr . $num + 1?>"
+            class="checkbox" <?php if ($this->is_show_ans && $variant['ans_is_correct']) { ?>checked="true"<?php }?>/>
+            </th>
+
+            <td><label for="v<?php echo $qst_curr . $num + 1?>"><?php echo $variant['ans_text']?></label></td>
+            </tr>
+
+            <?php
+        }
+        break;
+ case 5:
+      ?>
+      <?php for ($i = 1; $i <= sizeof($this->variants[$qst_curr]); $i++) { ?>
+      <tr>
+         <th><?php echo $i ?></th>
+         <td>
+          <select name="v[<?php echo $qst_curr;?>][]" id="v<?php echo $i + 1;?>" class="combo">
+            <option  value="0">Выберите порядок</option>
+            <?php foreach ($this->variants[$qst_curr] as $j => $variant) { ?>
+               <option value="<?php echo $j + 1?>"<?php if ($this->is_show_ans  && $variant['ans_is_correct'] == $i) { ?> selected="true" <?php }?>><?php echo $variant['ans_text']?></option>
+             <?php  }?>
+          </select>
+        </td>
+      </tr>
+      <?php  } ?>
+      <?php
+          break;
+      }
+      ?>
+</table>
+
+<?php
+}
+?>
+<p><input type="submit" name="submit" class="button" value="Далее" /></p>
+</fieldset>
+</form>
+</div>
+
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

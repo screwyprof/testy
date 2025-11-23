@@ -1,0 +1,58 @@
+# IDE and Editor files
+.vscode/
+.devcontainer/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# PHP
+php_errors.log
+*.cache
+composer.phar
+
+# DON'T ignore vendor/ for legacy showcase
+# vendor/
+
+# Environment and configuration
+.env
+.env.local
+.envrc
+.env.*.local
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+cache/
+
+# Build and distribution
+/build/
+/dist/
+*.tar.gz
+*.zip
+
+
+# Nix
+/result
+.direnv/
+nix-phps/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# AI
+.claude/
+.mcp.json
+.bmad/

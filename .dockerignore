@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+php.ini
+
+# Development
+.nix/
+.flake.nix
+.flake.lock
+.direnv/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Composer (will be installed in container)
+vendor/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database (data will be in volume)
+*.sql.gz
+
+# Documentation
+README.md
+LICENSE.md
+
+# Node modules (if any)
+node_modules/
+
+# Backup files
+*.bak
+*.backup
+*.old

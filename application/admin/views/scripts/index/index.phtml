@@ -1,0 +1,17 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+  <table>
+  <tr>
+     <td><a href="<?php echo $this->baseUrl ?>/admin/reports/">Отчеты</a></td>
+  </tr>
+  <tr>
+     <td><a href="<?php echo $this->baseUrl ?>/admin/users/">Управление пользователями</a></td>
+  </tr>
+  <tr>
+     <td><a href="<?php echo $this->baseUrl ?>/admin/tests/">Управление тестами</a></td>
+  </tr>
+  </table>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

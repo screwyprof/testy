@@ -1,0 +1,16 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>    
+<div class="column1-unit">
+  <h1>Мы извиняемся, запрошенная вами страница не найдена.</h1>
+  <p>
+    Эта страница используется, чтобы помочь вам исправить данную проблему.<br />
+    Вы можете попробывать один из следующих методов:
+  </p>
+
+  <ul>
+     <li>Вернуться на <a href="<?php echo $this->baseUrl;?>/">главную страницу</a></li>
+     <li>Вернуться на <a href="javascript:history.back(-1)">предыдушую страницу</a></li>
+  </ul>
+ </div>     
+<hr class="clear-contentunit" />   
+<?php echo $this->render('footer.phtml');?>

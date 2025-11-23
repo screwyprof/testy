@@ -1,0 +1,15 @@
+{
+    "require": {
+        "shardj/zf1-future": "^1.24"
+    },
+    "scripts": {
+        "zf": "vendor/zendframework/zendframework1/bin/zf.sh"
+    },
+    "autoload": {
+        "psr-0": {
+            "Default_Model_": "application/default/models/",
+            "Admin_Form_": "application/admin/forms/",
+            "Admin_Validate_": "application/admin/forms/"
+        }
+    }
+}

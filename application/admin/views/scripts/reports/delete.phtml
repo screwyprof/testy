@@ -1,0 +1,57 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+<?php if (isset($this->result)) {?>
+  <div class="testform">
+  <fieldset>
+  <form action="<?php echo $this->baseUrl ?>/admin/reports/delete" method="post">
+
+  <table>
+  <tr>
+      <th class="top" scope="col" width="10%">Дата</th>
+      <th class="top" scope="col" width="30%">Пользователь</th>
+      <th class="top" scope="col">Тест</th>
+      <th class="top" scope="col" width="10%">Время</th>
+      <th class="top" scope="col">%</th>
+      <th class="top" scope="col">Оценка</th>
+      <th class="top" scope="col">Превышено</th>
+  </tr>
+  <tr>
+      <td><?php echo date('d.m.Y H:i:s', $this->escape($this->result['rst_start_time']));?></td>
+      <td>
+        <?php echo $this->escape($this->result['usr_lastname']);?>
+        <?php echo $this->escape($this->result['usr_firstname']);?>
+        <?php echo $this->escape($this->result['usr_thirdname']);?>
+      </td>
+      <td><?php echo $this->escape($this->result['test_title']);?></td>
+      <td><?php echo $this->escape($this->result['rst_time_spent']);?></td>
+      <td><?php echo $this->escape($this->result['rst_points']);?></td>
+      <td><?php echo $this->escape($this->result['rst_mark']);?></td>
+      <td><?php echo $this->escape($this->result['rst_is_time_exceeded']);?></td>
+  </tr>
+  </table>
+
+
+
+	<table>
+	<tr>
+	  <td>Вы действительно хотите удалить результат тестирования?</td>
+	</tr>
+	<tr>
+	  <td>
+	  	<input type="hidden" name="id" value="<?php echo $this->escape($this->result['rst_id']);?>" />
+		<input type="submit" name="del" value="Yes" />
+		<input type="submit" name="del" value="No" />
+	  </td>
+	</tr>
+	</table>
+	<br />
+  </form>
+  </fieldset>
+  </div>
+  <?php } else { ?>
+  <p>Результат не найден в базе данных.</p>
+  <?php }?>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

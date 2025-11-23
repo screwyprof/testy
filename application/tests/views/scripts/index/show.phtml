@@ -1,0 +1,118 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+ <div class="testform">
+    <fieldset>
+      <table>
+      <tr>
+        <th><?php echo $this->escape($this->question['qst_text']);?></th>
+      </tr>
+<?php /*
+      <tr>
+        <th><?php echo $this->escape($this->percents);?></th>
+      </tr>
+      <tr>
+        <th><?php echo $this->escape($this->timespent);?></th>
+      </tr>
+*/ ?>
+      </table>
+
+      <table>
+      <tr>
+        <th class="top">&nbsp;</th>
+        <td>Варианты ответа:</td>
+      </tr>
+<?php
+switch ($this->question['qst_type']) {
+    case 1:
+?>
+      <?php foreach ($this->variants as $i => $variant) { ?>
+      <tr>
+        <th><?php echo $i + 1;?></th>
+        <td><label><?php echo $variant?></label></td>
+      </tr>
+      <?php }?>
+      </table>
+
+      <table>
+      <tr>
+        <th class="top">&nbsp;</th>
+        <td>Ответ пользователя:</td>
+      </tr>
+      <?php foreach ($this->usransw as $i => $variant) { ?>
+      <tr>
+        <th><?php echo $i + 1;?></th>
+        <td><label><?php echo $variant?></label></td>
+      </tr>
+      <?php }?>
+      </table>
+
+<?php
+break;
+
+    case 3:
+    case 4:
+?>
+     <?php foreach ($this->variants as $num => $variant) {?>
+     <tr>
+       <th><?php if ($variant['ans_is_correct']) { ?>+<?php }?> </th>
+       <td><label><?php echo $variant['ans_text']?></label></td>
+     </tr>
+     <?php }?>
+     </table>
+
+     <table>
+     <tr>
+       <th class="top">&nbsp;</th>
+       <td>Ответ пользователя:</td>
+     </tr>
+     <?php foreach ($this->usransw as $i => $variant) { ?>
+     <tr>
+       <th><?php echo $i + 1?></th>
+       <td><label for="u<?php echo $i?>"><?php echo $variant['ans_text']?></label></td>
+     </tr>
+     <?php }?>
+     </table>
+<?php
+break;
+    case 2:
+    case 5:
+        ?>
+      <?php foreach ($this->variants as $i => $variant) { ?>
+      <tr>
+        <th>
+          <?php for ($j = 1; $j <= sizeof($this->variants); $j++) { ?>
+            <?php if ($variant['ans_is_correct'] == $j) { ?><?php echo $j?><?php }?>
+          <?php }?>
+        </th>
+        <td><label><?php echo $variant['ans_text']?></label></td>
+      </tr>
+      <?php }?>
+      </table>
+
+      <table>
+      <tr>
+        <th class="top">&nbsp;</th>
+        <td>Ответ пользователя:</td>
+      </tr>
+      <?php foreach ($this->usransw as $i => $variant) { ?>
+      <tr>
+        <th>
+          <?php for ($j = 0; $j <= sizeof($this->variants); $j++) { ?>
+            <?php if ($variant['ans_is_correct'] == $j) { ?><?php echo $j ?><?php }?>
+          <?php }?>
+        </th>
+        <td><label><?php echo $variant['ans_text']?></label></td>
+      </tr>
+      <?php }?>
+      </table>
+
+ <?php
+        break;
+}
+?>
+    </fieldset>
+  </div>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

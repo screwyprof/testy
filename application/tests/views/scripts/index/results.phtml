@@ -1,0 +1,68 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+  <table>
+  <tr>
+  <td>
+  <ul>
+    <li><a href="<?php echo $this->baseUrl;?>/tests/">Вернуться к выбору теста</a></li>
+    <li><a href="<?php echo $this->baseUrl;?>/">Вернуться на главную страницу</a></li>
+  </ul>
+  </td>
+  </tr>
+  </table>
+  
+  <table>
+  <tr>
+      <th>Название теста:</th>
+      <td><?php echo $this->escape($this->test_title);?></td>
+  </tr>
+  <tr>    
+      <th>Дата начала:</th>
+      <td><?php echo $this->escape($this->start_time);?></td>
+  </tr>
+<?php /*
+  <tr>
+      <th>Затрачено времени:</th>
+      <td><?php echo $this->escape($this->time_spent);?></td>
+  </tr>
+  */
+?>
+  <tr>
+     <th>Баллы:</th>
+     <td><?php echo $this->escape($this->result);?>%</td>
+  </tr>
+  <tr>
+      <th>Оценка:</th>
+      <td><?php echo $this->escape($this->mark);?></td>
+  </tr>
+  </table>
+  
+ 
+  <table style="text-align: center;">
+  <tr> 
+      <th class="top" scope="col" width="7%">№</th>
+      <th class="top" scope="col" width="7%">%</th>
+      <th class="top" scope="col">Вопрос</th>
+      <?php if ($this->qst_per_page == 0) { ?>
+      <th class="top" scope="col" width="10%">Время ответа</th>
+      <?php } ?>
+      <th class="top" scope="col" width="12%">Действие</th>
+  </tr>
+  <?php foreach($this->results as $num => $result) { ?>
+  <tr>
+      <th><?php echo $num + 1;?></th>
+      <td><?php echo $this->escape($result['ans_percents']);?></td>
+      <td><?php echo $result['question'];?></td>
+      <?php if ($this->qst_per_page == 0) { ?>
+      <td><?php echo $this->escape($result['ans_timespent']);?></td>  
+      <?php } ?>    
+      <td>
+        <a target="_blank" href="<?php echo $this->baseUrl;?>/tests/index/show/id/<?php echo $result['id'];?>">Детально</a><br />
+      </td>
+  </tr>
+  <?php } ?>
+  </table>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml');?>

@@ -1,0 +1,52 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+
+  <table>
+  <tr>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  </table>
+
+  
+  <table>
+  <tr>
+    <td><a href="<?php echo $this->baseUrl?>/admin/tests/add">Создать тест</a></td>
+  </tr>
+  </table>
+  
+  <table>
+  <tr>
+      <th class="top" scope="col" width="30%">Тест</th>
+<?php /*      
+      <th class="top" scope="col">Дата начала</th>      
+      <th class="top" scope="col">Дата окончания</th>
+*/ ?>    
+      <th class="top" scope="col" width="45%">Описание</th>  
+      <th class="top" scope="col" width="10%">Активен</th>
+      <th class="top" scope="col" width="15%">Действие</th>
+  </tr>
+  <?php foreach($this->tests as $test) { ?>
+  <tr>
+      <td><?php echo $this->escape($test['test_title']);?></td>
+      <td><?php echo $this->escape($test['test_desc']);?></td>      
+<?php /*      
+      <td><?php echo date('d.m.Y H:i:s', $this->escape($test['test_start_time']));?></td>
+      <td><?php echo date('d.m.Y H:i:s', $this->escape($test['test_stop_time']));?></td>
+*/ ?>      
+      <td><?php echo $this->escape($test['test_is_enabled']);?></td>
+      <td>
+        <a href="<?php echo $this->baseUrl;?>/admin/tests/edit/id/<?php echo $test['test_id'];?>">Свойства</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/questions/index/test/<?php echo $test['test_id'];?>">Вопросы</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/tests/delete/id/<?php echo $test['test_id'];?>" onclick="return confirm('Вы действительно хотите удалить данный тест?')">Удалить</a>
+        </td>
+  </tr>
+  <?php } ?>
+  </table>
+</div>          
+<hr class="clear-contentunit" />   
+<?php echo $this->render('footer.phtml');?>

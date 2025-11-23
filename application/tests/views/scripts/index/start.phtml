@@ -1,0 +1,26 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+<?php
+/*
+  <table>
+  <tr>
+      <th class="top" scope="col">Название теста</th>
+      <th class="top" scope="col">Описание теста</th>
+      <th class="top" scope="col">Действие</th>
+  </tr>
+       <td><?php echo $this->escape($this->tests->test_title);?></td>
+      <td><?php echo $this->escape($this->tests->test_desc);?></td>
+      <td>
+        <a href="<?php echo $this->baseUrl;?>/tests/index/start/id/<?php echo $test->test_id;?>">Начать тест</a><br />
+      </td>
+  </tr>
+  </table>
+*/
+?>
+<p><?php echo $this->escape($this->test['test_title']);?></p>
+<a href="<?php echo $this->baseUrl;?>/tests/index/test">Начать тест</a><br />
+
+</div>          
+<hr class="clear-contentunit" />   
+<?php echo $this->render('footer.phtml');?>

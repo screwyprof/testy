@@ -1,0 +1,16 @@
+<?php echo $this->render('header.phtml'); ?>
+<h1 class="block"><?php echo $this->escape($this->title); ?></h1>
+<div class="column1-unit">
+  <div class="contactform">
+    <form action="<?php echo $this->baseUrl ?>/admin/tests/edit" method="post">
+      <fieldset>
+        <legend>&nbsp;Свойства теста&nbsp;</legend>
+        <?php
+        echo $this->form;
+        ?>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<hr class="clear-contentunit" />
+<?php echo $this->render('footer.phtml'); ?>

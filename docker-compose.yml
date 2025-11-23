@@ -1,0 +1,79 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: "8.3"
+        USER_UID: 1000
+        USER_GID: 1000
+
+    container_name: testy-app
+    restart: unless-stopped
+
+    volumes:
+      - .:/var/www/html:cached
+      #- ./logs:/var/log/apache2
+
+    ports:
+      - "8080:80"
+
+    networks:
+      - testy-network
+
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+      - APPLICATION_ENV=development
+
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:11.1
+    container_name: testy-db
+    restart: unless-stopped
+
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./migrations.sql:/docker-entrypoint-initdb.d/01-migrations.sql:ro
+
+    environment:
+      MYSQL_ROOT_PASSWORD: mariadb
+      MYSQL_DATABASE: mariadb
+      MYSQL_USER: mariadb
+      MYSQL_PASSWORD: mariadb
+
+    ports:
+      - "3306:3306"
+
+    networks:
+      - testy-network
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: testy-phpmyadmin
+    restart: unless-stopped
+
+    ports:
+      - "8081:80"
+
+    networks:
+      - testy-network
+
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: mariadb
+      MYSQL_ROOT_PASSWORD: mariadb
+
+    depends_on:
+      - db
+
+networks:
+  testy-network:
+    driver: bridge
+
+volumes:
+  mariadb-data:
+    driver: local
