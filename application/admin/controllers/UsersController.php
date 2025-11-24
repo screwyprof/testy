@@ -28,7 +28,7 @@ class Admin_UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = 'Управление пользователями';
+        $this->view->title = 'Manage Users';
 
         $items_per_page = 5;
 
@@ -119,7 +119,7 @@ class Admin_UsersController extends Zend_Controller_Action
             return;
         }
 
-        $this->view->title = 'Создание пользователя';
+        $this->view->title = 'Create User';
         $this->render();
     }
 
@@ -172,14 +172,14 @@ class Admin_UsersController extends Zend_Controller_Action
             $this->redirect('/admin/users');
             return;
         } else {
-            // Получаем идентификатор пользователя
+            // Get user identifier
             $id = (int) $this->_request->getParam('id', 0);
             if ($id > 0) {
                 $this->view->usr = Default_Model_User::findUserById($id);
             }
         }
 
-        $this->view->title = 'Параметры пользователя';
+        $this->view->title = 'User Properties';
         $this->render();
     }
 
@@ -196,12 +196,12 @@ class Admin_UsersController extends Zend_Controller_Action
         } else {
             $id = (int)$this->_request->getParam('id', 0);
             $this->view->usr   = Default_Model_User::findUserById($id);
-            $this->view->title = 'Удаление пользователя';
+            $this->view->title = 'Delete User';
             $this->render();
             return;
         }
 
-        // возвращаемся к списку пользователей
+        // return to user list
         $this->redirect('/admin/users');
     }
 

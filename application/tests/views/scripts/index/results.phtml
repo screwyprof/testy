@@ -5,8 +5,8 @@
   <tr>
   <td>
   <ul>
-    <li><a href="<?php echo $this->baseUrl;?>/tests/">Вернуться к выбору теста</a></li>
-    <li><a href="<?php echo $this->baseUrl;?>/">Вернуться на главную страницу</a></li>
+    <li><a href="<?php echo $this->baseUrl;?>/tests/">Back to Test Selection</a></li>
+    <li><a href="<?php echo $this->baseUrl;?>/">Back to Home</a></li>
   </ul>
   </td>
   </tr>
@@ -14,26 +14,26 @@
   
   <table>
   <tr>
-      <th>Название теста:</th>
+      <th>Test Name:</th>
       <td><?php echo $this->escape($this->test_title);?></td>
   </tr>
   <tr>    
-      <th>Дата начала:</th>
+      <th>Start Time:</th>
       <td><?php echo $this->escape($this->start_time);?></td>
   </tr>
 <?php /*
   <tr>
-      <th>Затрачено времени:</th>
+      <th>Time Spent:</th>
       <td><?php echo $this->escape($this->time_spent);?></td>
   </tr>
   */
 ?>
   <tr>
-     <th>Баллы:</th>
+     <th>Score:</th>
      <td><?php echo $this->escape($this->result);?>%</td>
   </tr>
   <tr>
-      <th>Оценка:</th>
+      <th>Grade:</th>
       <td><?php echo $this->escape($this->mark);?></td>
   </tr>
   </table>
@@ -43,11 +43,11 @@
   <tr> 
       <th class="top" scope="col" width="7%">№</th>
       <th class="top" scope="col" width="7%">%</th>
-      <th class="top" scope="col">Вопрос</th>
+      <th class="top" scope="col">Question</th>
       <?php if ($this->qst_per_page == 0) { ?>
-      <th class="top" scope="col" width="10%">Время ответа</th>
+      <th class="top" scope="col" width="10%">Time Taken</th>
       <?php } ?>
-      <th class="top" scope="col" width="12%">Действие</th>
+      <th class="top" scope="col" width="12%">Action</th>
   </tr>
   <?php foreach($this->results as $num => $result) { ?>
   <tr>
@@ -58,7 +58,7 @@
       <td><?php echo $this->escape($result['ans_timespent']);?></td>  
       <?php } ?>    
       <td>
-        <a target="_blank" href="<?php echo $this->baseUrl;?>/tests/index/show/id/<?php echo $result['id'];?>">Детально</a><br />
+        <a target="_blank" href="<?php echo $this->baseUrl;?>/tests/index/show/id/<?php echo $result['id'];?>">Details</a><br />
       </td>
   </tr>
   <?php } ?>

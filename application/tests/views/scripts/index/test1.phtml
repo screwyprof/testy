@@ -26,7 +26,7 @@ function writeVTimer($hours, $minutes, $seconds) {
             clearTimeout(clockID);
             clockID = 0;
             document.getElementById("vtimer").innerHTML = "<b>00:00:00</b>";
-            alert('Время тестирования закончено!')
+            alert('Test time has expired!')
         }
     }
     function setLeadingZero(i) {
@@ -47,7 +47,7 @@ function writeVTimer($hours, $minutes, $seconds) {
 <?php writeVTimer(0, 0, $this->test_time); ?>
 <table>
 <tr>
-  <td>Время: <span id="vtimer"></span></td>
+  <td>Time: <span id="vtimer"></span></td>
 </tr>
 </table>
 
@@ -130,7 +130,7 @@ switch ($this->question[$qst_curr]['qst_type']) {
          <th><?php echo $i ?></th>
          <td>
           <select name="v[<?php echo $qst_curr;?>][]" id="v<?php echo $i + 1;?>" class="combo">
-            <option  value="0">Выберите порядок</option>
+            <option  value="0">Select order</option>
             <?php foreach ($this->variants[$qst_curr] as $j => $variant) { ?>
                <option value="<?php echo $j + 1?>"<?php if ($this->is_show_ans  && $variant['ans_is_correct'] == $i) { ?> selected="true" <?php }?>><?php echo $variant['ans_text']?></option>
              <?php  }?>
@@ -147,7 +147,7 @@ switch ($this->question[$qst_curr]['qst_type']) {
 <?php
 }
 ?>
-<p><input type="submit" name="submit" class="button" value="Далее" /></p>
+<p><input type="submit" name="submit" class="button" value="Next" /></p>
 </fieldset>
 </form>
 </div>

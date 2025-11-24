@@ -11,7 +11,7 @@ class ErrorController extends Zend_Controller_Action
 
     public function errorAction()
     {
-        $this->view->title = 'Ошибка 404';
+        $this->view->title = 'Error 404';
         Zend_Debug::dump($this->getResponse());
         die();
     }
@@ -21,7 +21,7 @@ class ErrorController extends Zend_Controller_Action
         $response = $this->getResponse();
         $response->setHttpResponseCode(404);
 
-        $this->view->title = 'Ошибка 404';
+        $this->view->title = 'Error 404';
         $this->render();
     }
 

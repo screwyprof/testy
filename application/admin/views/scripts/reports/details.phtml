@@ -3,10 +3,10 @@
 <div class="column1-unit">
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Отчеты</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/reports/results/id/<?php echo $this->result['rst_id']?>">Результаты теста</a></td>
-    <td>Детально</td>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Reports</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/reports/results/id/<?php echo $this->result['rst_id']?>">Test Results</a></td>
+    <td>Details</td>
   </tr>
   </table>
  <div class="testform">
@@ -17,10 +17,10 @@
       </tr>
 <?php /*
       <tr>
-        <th>Результат: <?php echo $this->escape($this->percents);?>%</th>
+        <th>Result: <?php echo $this->escape($this->percents);?>%</th>
       </tr>
       <tr>
-        <th>Время затрачено: <?php echo $this->escape($this->timespent);?> сек.</th>
+        <th>Time Spent: <?php echo $this->escape($this->timespent);?> sec.</th>
       </tr>
 */ ?>
       </table>
@@ -28,7 +28,7 @@
       <table>
       <tr>
         <th class="top">&nbsp;</th>
-        <td>Варианты ответа:</td>
+        <td>Answer Options:</td>
       </tr>
 <?php
 switch ($this->question['qst_type']) {
@@ -45,7 +45,7 @@ switch ($this->question['qst_type']) {
       <table>
       <tr>
         <th class="top">&nbsp;</th>
-        <td>Ответ пользователя:</td>
+        <td>User Answer:</td>
       </tr>
       <?php foreach ($this->usransw as $i => $variant) { ?>
       <tr>
@@ -72,7 +72,7 @@ break;
      <table>
      <tr>
        <th class="top">&nbsp;</th>
-       <td>Ответ пользователя:</td>
+       <td>User Answer:</td>
      </tr>
      <?php foreach ($this->usransw as $i => $variant) { ?>
      <tr>
@@ -101,7 +101,7 @@ break;
       <table>
       <tr>
         <th class="top">&nbsp;</th>
-        <td>Ответ пользователя:</td>
+        <td>User Answer:</td>
       </tr>
       <?php foreach ($this->usransw as $i => $variant) { ?>
       <tr>

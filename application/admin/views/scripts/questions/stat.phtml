@@ -4,9 +4,9 @@
 
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/tests">Управление тестами</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/questions/index/test/<?php echo $this->test_id;?>">Вопросы теста</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/tests">Manage Tests</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/questions/index/test/<?php echo $this->test_id;?>">Test Questions</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
@@ -15,20 +15,20 @@
   <?php if (isset($this->question)) { ?>
   <table>
   <tr>
-      <th width="20%">Вопрос:</th>
+      <th width="20%">Question:</th>
       <td><?php echo $this->question['qst_text'];?></td>
   </tr>
   <tr>
-      <th width="20%">Кол-во отвечавших:</th>
+      <th width="20%">Number of Respondents:</th>
       <td><?php echo $this->question['qst_req_count'];?></td>
   </tr>
   <tr>
-      <th>Средний бал:</th>
+      <th>Average Score:</th>
       <td><?php echo $this->question['qst_adv_percents'];?>%</td>
   </tr>
 <?php /*
 <tr>
-<th>Затрачено времени:</th>
+<th>Time Spent:</th>
 <td><?php echo $this->escape($this->time_spent);?></td>
 </tr>
 */
@@ -37,8 +37,8 @@
 
   <table>
   <tr>
-  <th>Вариант</th>
-  <th>Выбран раз</th>
+  <th>Option</th>
+  <th>Times Selected</th>
   <th>%</th>
   </tr>
   <?php foreach ($this->variants as $key => $variant) { ?>
@@ -58,17 +58,17 @@
   
   <table>
   <tr>
-    <td>Правильных ответов:</td>
+    <td>Correct Answers:</td>
     <td><?php echo $this->escape($this->ans_correct);?></td>
     <td><?php echo ($this->question['qst_req_count'] == 0) ? '0' : floor($this->ans_correct / $this->question['qst_req_count'] * 100);?>%</td>
   </tr>
   <tr>
-    <td>Неправильных ответов:</td>
+    <td>Incorrect Answers:</td>
     <td><?php echo $this->escape($this->ans_incorrect);?></td>
     <td><?php echo ($this->question['qst_req_count'] == 0) ? '0' : floor($this->ans_incorrect / $this->question['qst_req_count'] * 100);?>%</td>
   </tr>
   <tr>
-    <td>Частично правильных ответов:</td>
+    <td>Partially Correct Answers:</td>
     <td><?php echo $this->escape($this->ans_partially);?></td>
     <td><?php echo ($this->question['qst_req_count'] == 0) ? '0' : floor($this->ans_partially / $this->question['qst_req_count'] * 100);?>%</td>
   </tr>  
@@ -77,7 +77,7 @@
     <?php } else { ?>
      <table>
      <tr>
-      <th>Вопрос не найден в базе данных!</th>
+      <th>Question not found in database!</th>
      </tr>
      </table>
     <?php } ?>

@@ -3,29 +3,29 @@
 <div class="column1-unit">
   <div class="contactform">
     <form action="<?php echo $this->baseUrl?>/admin/users/edit" method="post">
-    <fieldset> <legend>&nbsp;Параметры пользователя&nbsp;</legend>
+    <fieldset> <legend>&nbsp;User Parameters&nbsp;</legend>
 
-      <p><label for="usr_is_enabled" class="left">Пользователь активен:</label>
+      <p><label for="usr_is_enabled" class="left">User Active:</label>
          <input type="checkbox" name="usr_is_enabled" id="usr_is_enabled"
                 class="checkbox" tabindex="1" <?php if($this->usr['usr_is_enabled']) {?> checked="true" <?php } ?>/>
       </p>
 
-      <p><label for="usr_login" class="left">Логин:</label>
+      <p><label for="usr_login" class="left">Username:</label>
          <input type="text" name="usr_login" id="usr_login"
                 value="<?php echo $this->escape($this->usr['usr_login']);?>" class="field" tabindex="2" />
       </p>
 
-      <p><label for="usr_lastname" class="left">Фамилия:</label>
+      <p><label for="usr_lastname" class="left">Last Name:</label>
          <input type="text" name="usr_lastname" id="usr_lastname"
                 value="<?php echo $this->escape($this->usr['usr_lastname']);?>" class="field" tabindex="3" />
       </p>
 
-      <p><label for="usr_firstname" class="left">Имя:</label>
+      <p><label for="usr_firstname" class="left">First Name:</label>
          <input type="text" name="usr_firstname" id="usr_firstname"
                 value="<?php echo $this->escape($this->usr['usr_firstname']);?>" class="field" tabindex="4" />
       </p>
 
-      <p><label for="usr_thirdname" class="left">Отчество:</label>
+      <p><label for="usr_thirdname" class="left">Middle Name:</label>
          <input type="text" name="usr_thirdname" id="usr_thirdname"
                 value="<?php echo $this->escape($this->usr['usr_thirdname']);?>" class="field" tabindex="5" />
       </p>
@@ -36,19 +36,19 @@
       </p>
 
 
-      <p><label for="usr_role" class="left">Тип пользователя:</label>
+      <p><label for="usr_role" class="left">User Type:</label>
          <select name="usr_role" id="usr_role" class="combo">
-           <option value="u">Пользователь</option>
-           <option value="e" <?php if($this->usr['usr_role'] == 'e') {?> selected <?php } ?>>Редактор</option>
-           <option value="a" <?php if($this->usr['usr_role'] == 'a') {?> selected <?php } ?>>Администратор</option>
+           <option value="u">User</option>
+           <option value="e" <?php if($this->usr['usr_role'] == 'e') {?> selected <?php } ?>>Editor</option>
+           <option value="a" <?php if($this->usr['usr_role'] == 'a') {?> selected <?php } ?>>Administrator</option>
          </select>
       </p>
 
       <input type="hidden" name="usr_id" value="<?php echo $this->usr['usr_id'];?>" />
 
       <p>
-        <input type="submit" name="cancel" id="cancel" class="button" value="Отмена" tabindex="8" />
-        <input type="submit" name="submit" id="submit" class="button" value="Обновить" tabindex="9" />
+        <input type="submit" name="cancel" id="cancel" class="button" value="Cancel" tabindex="8" />
+        <input type="submit" name="submit" id="submit" class="button" value="Update" tabindex="9" />
       </p>
     </fieldset>
     </form>

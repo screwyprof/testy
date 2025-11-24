@@ -8,13 +8,13 @@
 
   <table>
   <tr>
-      <th class="top" scope="col" width="10%">Дата</th>
-      <th class="top" scope="col" width="30%">Пользователь</th>
-      <th class="top" scope="col">Тест</th>
-      <th class="top" scope="col" width="10%">Время</th>
+      <th class="top" scope="col" width="10%">Date</th>
+      <th class="top" scope="col" width="30%">User</th>
+      <th class="top" scope="col">Test</th>
+      <th class="top" scope="col" width="10%">Time</th>
       <th class="top" scope="col">%</th>
-      <th class="top" scope="col">Оценка</th>
-      <th class="top" scope="col">Превышено</th>
+      <th class="top" scope="col">Grade</th>
+      <th class="top" scope="col">Exceeded</th>
   </tr>
   <tr>
       <td><?php echo date('d.m.Y H:i:s', $this->escape($this->result['rst_start_time']));?></td>
@@ -35,7 +35,7 @@
 
 	<table>
 	<tr>
-	  <td>Вы действительно хотите удалить результат тестирования?</td>
+	  <td>Are you sure you want to delete this test result?</td>
 	</tr>
 	<tr>
 	  <td>
@@ -50,7 +50,7 @@
   </fieldset>
   </div>
   <?php } else { ?>
-  <p>Результат не найден в базе данных.</p>
+  <p>Result not found in database.</p>
   <?php }?>
 </div>
 <hr class="clear-contentunit" />

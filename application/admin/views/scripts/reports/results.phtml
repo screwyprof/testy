@@ -3,34 +3,34 @@
 <div class="column1-unit">
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Отчеты</a></td>
-    <td>Результаты теста</td>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Reports</a></td>
+    <td>Test Results</td>
   </tr>
   </table>
 
   <table>
   <tr>
-      <th>Название теста:</th>
+      <th>Test Name:</th>
       <td><?php echo $this->escape($this->test_title);?></td>
   </tr>
   <tr>
-      <th>Дата начала:</th>
+      <th>Start Date:</th>
       <td><?php echo $this->escape($this->start_time);?></td>
   </tr>
 <?php /*
   <tr>
-      <th>Затрачено времени:</th>
+      <th>Time Spent:</th>
       <td><?php echo $this->escape($this->time_spent);?></td>
   </tr>
   */
 ?>
   <tr>
-     <th>Баллы:</th>
+     <th>Score:</th>
      <td><?php echo $this->escape($this->result);?>%</td>
   </tr>
   <tr>
-      <th>Оценка:</th>
+      <th>Grade:</th>
       <td><?php echo $this->escape($this->mark);?></td>
   </tr>
   </table>
@@ -40,11 +40,11 @@
   <tr>
       <th class="top" scope="col" width="7%">№</th>
       <th class="top" scope="col" width="7%">%</th>
-      <th class="top" scope="col">Вопрос</th>
+      <th class="top" scope="col">Question</th>
       <?php if ($this->qst_per_page == 0) { ?>
-      <th class="top" scope="col" width="10%">Время ответа</th>
+      <th class="top" scope="col" width="10%">Response Time</th>
       <?php } ?>
-      <th class="top" scope="col" width="12%">Действие</th>
+      <th class="top" scope="col" width="12%">Action</th>
   </tr>
   <?php foreach($this->results as $num => $result) { ?>
   <tr>
@@ -55,7 +55,7 @@
       <td><?php echo $this->escape($result['ans_timespent']);?></td>
       <?php } ?>
       <td>
-        <a href="<?php echo $this->baseUrl;?>/admin/reports/details/id/<?php echo $result['id'];?>">Детально</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/reports/details/id/<?php echo $result['id'];?>">Details</a><br />
       </td>
   </tr>
   <?php } ?>

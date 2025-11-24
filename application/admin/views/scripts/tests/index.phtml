@@ -4,7 +4,7 @@
 
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -15,20 +15,20 @@
   
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin/tests/add">Создать тест</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/tests/add">Create Test</a></td>
   </tr>
   </table>
   
   <table>
   <tr>
-      <th class="top" scope="col" width="30%">Тест</th>
+      <th class="top" scope="col" width="30%">Test</th>
 <?php /*      
-      <th class="top" scope="col">Дата начала</th>      
-      <th class="top" scope="col">Дата окончания</th>
+      <th class="top" scope="col">Start Date</th>
+      <th class="top" scope="col">End Date</th>
 */ ?>    
-      <th class="top" scope="col" width="45%">Описание</th>  
-      <th class="top" scope="col" width="10%">Активен</th>
-      <th class="top" scope="col" width="15%">Действие</th>
+      <th class="top" scope="col" width="45%">Description</th>  
+      <th class="top" scope="col" width="10%">Active</th>
+      <th class="top" scope="col" width="15%">Action</th>
   </tr>
   <?php foreach($this->tests as $test) { ?>
   <tr>
@@ -40,9 +40,9 @@
 */ ?>      
       <td><?php echo $this->escape($test['test_is_enabled']);?></td>
       <td>
-        <a href="<?php echo $this->baseUrl;?>/admin/tests/edit/id/<?php echo $test['test_id'];?>">Свойства</a><br />
-        <a href="<?php echo $this->baseUrl;?>/admin/questions/index/test/<?php echo $test['test_id'];?>">Вопросы</a><br />
-        <a href="<?php echo $this->baseUrl;?>/admin/tests/delete/id/<?php echo $test['test_id'];?>" onclick="return confirm('Вы действительно хотите удалить данный тест?')">Удалить</a>
+        <a href="<?php echo $this->baseUrl;?>/admin/tests/edit/id/<?php echo $test['test_id'];?>">Properties</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/questions/index/test/<?php echo $test['test_id'];?>">Questions</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/tests/delete/id/<?php echo $test['test_id'];?>" onclick="return confirm('Are you sure you want to delete this test?')">Delete</a>
         </td>
   </tr>
   <?php } ?>

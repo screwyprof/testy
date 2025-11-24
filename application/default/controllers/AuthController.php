@@ -34,7 +34,7 @@ class AuthController extends Zend_Controller_Action
             $password = $filter->filter($this->_request->getPost('password'));
 
             if (empty($username)) {
-                $this->view->message = 'Пожайлуста заполните все поля!';
+                $this->view->message = 'Please fill all fields!';
             } else {
                 // setup Zend_Auth adapter for a database table
                 //Zend_Loader::loadClass('Zend_Auth_Adapter_DbTable');
@@ -81,17 +81,17 @@ class AuthController extends Zend_Controller_Action
                     switch ($result->getCode()) {
                         case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
                             /** do stuff for nonexistent identity **/
-                            $message = 'Неверный пользователь!';
+                            $message = 'Invalid username!';
                             break;
 
                         case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
                             /** do stuff for invalid credential **/
-                            $message = 'Неверный пароль!';
+                            $message = 'Invalid password!';
                             break;
 
                         default:
                             /** do stuff for other failure **/
-                            $message = 'Сбой при входе в систему!';
+                            $message = 'Login failed!';
                             break;
                     }
                     // failure: clear database row from session
@@ -101,7 +101,7 @@ class AuthController extends Zend_Controller_Action
             }
         }
 
-        $this->view->title = "Вход в систему";
+        $this->view->title = "Login";
         $this->render();
     }
 

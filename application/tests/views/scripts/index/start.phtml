@@ -5,21 +5,21 @@
 /*
   <table>
   <tr>
-      <th class="top" scope="col">Название теста</th>
-      <th class="top" scope="col">Описание теста</th>
-      <th class="top" scope="col">Действие</th>
+      <th class="top" scope="col">Test Name</th>
+      <th class="top" scope="col">Test Description</th>
+      <th class="top" scope="col">Action</th>
   </tr>
        <td><?php echo $this->escape($this->tests->test_title);?></td>
       <td><?php echo $this->escape($this->tests->test_desc);?></td>
       <td>
-        <a href="<?php echo $this->baseUrl;?>/tests/index/start/id/<?php echo $test->test_id;?>">Начать тест</a><br />
+        <a href="<?php echo $this->baseUrl;?>/tests/index/start/id/<?php echo $test->test_id;?>">Start Test</a><br />
       </td>
   </tr>
   </table>
 */
 ?>
 <p><?php echo $this->escape($this->test['test_title']);?></p>
-<a href="<?php echo $this->baseUrl;?>/tests/index/test">Начать тест</a><br />
+<a href="<?php echo $this->baseUrl;?>/tests/index/test">Start Test</a><br />
 
 </div>          
 <hr class="clear-contentunit" />   

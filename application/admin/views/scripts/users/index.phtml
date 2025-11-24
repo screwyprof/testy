@@ -4,7 +4,7 @@
 
   <table class="navigation">
   <tr>
-    <th><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></th>
+    <th><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
@@ -14,29 +14,29 @@
   
   <table class="toolbar">
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin/users/add"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-new-big.gif" alt="Добавить пользователя" title="Добавить пользователя" /></a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/users/add"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-new-big.gif" alt="Add User" title="Add User" /></a></td>
 <?php 
 /*
     <td><img src="images/button-cross-big.gif" border=0 title="Delete users (for selected records)" style="cursor: hand;" onclick="f=document.usersForm;if (confirm('Are you sure want to delete selected users?')) { f.action='users.php?action=delete&confirmed=1';f.submit();}"></td>
 */
 ?>
     <td class="big">&nbsp;</td>
-    <td>Страница <?php echo $this->page_no?> из <?php echo $this->page_count?></td>
+    <td>Page <?php echo $this->page_no?> of <?php echo $this->page_count?></td>
 
     <?php if ($this->page_no > 1) { ?>
-    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/1"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-first-big.gif" alt="Первая страница" title="Перейти к первой странице" /></a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_prev?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-prev-big.gif" alt="Предыдушая страница" title="Перейти к предыдущей странице" /></a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/1"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-first-big.gif" alt="First Page" title="Go to first page" /></a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_prev?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-prev-big.gif" alt="Previous Page" title="Go to previous page" /></a></td>
     <?php } else {?>
-    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-first-big-inactive.gif" alt="Первая страница" title="Перейти к первой странице" /></td>
-    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-prev-big-inactive.gif" alt="Предыдушая страница" title="Перейти к предыдущей странице" /></td>
+    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-first-big-inactive.gif" alt="First Page" title="Go to first page" /></td>
+    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-prev-big-inactive.gif" alt="Previous Page" title="Go to previous page" /></td>
     <?php }?>
     
     <?php if($this->page_no < $this->page_count) { ?>
-    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_next?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-next-big.gif" alt="Следующая страница" title="Перейти к следующей странице" /></a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_count?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-last-big.gif" alt="Последняя страница" title="Перейти к последней странице" /></a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_next?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-next-big.gif" alt="Next Page" title="Go to next page" /></a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/users/index/pageno/<?php echo $this->page_count?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-last-big.gif" alt="Last Page" title="Go to last page" /></a></td>
     <?php } else { ?>
-    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-next-big-inactive.gif" alt="Следующая страница" title="Перейти к следующей странице" /></td>
-    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-last-big-inactive.gif" alt="Последняя страница" title="Перейти к последней странице" /></td>
+    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-next-big-inactive.gif" alt="Next Page" title="Go to next page" /></td>
+    <td><img class="button-inactive" src="<?php echo $this->baseUrl?>/public/images/button-last-big-inactive.gif" alt="Last Page" title="Go to last page" /></td>
     <?php } ?>
   </tr>
   </table>
@@ -44,13 +44,13 @@
  <table>
   <tr>
   <?php /* <th class="top" scope="col" width="2%">&nbsp;</th>*/ ?>
-      <th class="top">Пользователь</th>
-      <th class="top">Фамилия</th>
-      <th class="top">Имя</th>
-      <th class="top">Отчество</th>
+      <th class="top">Username</th>
+      <th class="top">Last Name</th>
+      <th class="top">First Name</th>
+      <th class="top">Middle Name</th>
       <th class="top">e-mail</th>
-      <th class="top">Активен</th>
-      <th class="top" colspan="2">Действие</th>
+      <th class="top">Active</th>
+      <th class="top" colspan="2">Action</th>
   </tr>
   <?php foreach($this->users as $user) { ?>
   <tr>
@@ -61,8 +61,8 @@
       <td><?php echo $this->escape($user['usr_thirdname']);?></td>
       <td><?php echo $this->escape($user['usr_email']);?></td>
       <td><?php echo $this->escape($user['usr_is_enabled']);?></td>
-      <td><a href="<?php echo $this->baseUrl;?>/admin/users/edit/id/<?php echo $user['usr_id'];?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-edit.gif" alt="Редактировать" title="Редактировать" /></a></td>
-      <td><a href="<?php echo $this->baseUrl;?>/admin/users/delete/id/<?php echo $user['usr_id'];?>"><img  class="button" src="<?php echo $this->baseUrl?>/public/images/button-cross.gif" alt="Удалить" title="Удалить" /></a></td>
+      <td><a href="<?php echo $this->baseUrl;?>/admin/users/edit/id/<?php echo $user['usr_id'];?>"><img class="button" src="<?php echo $this->baseUrl?>/public/images/button-edit.gif" alt="Edit" title="Edit" /></a></td>
+      <td><a href="<?php echo $this->baseUrl;?>/admin/users/delete/id/<?php echo $user['usr_id'];?>"><img  class="button" src="<?php echo $this->baseUrl?>/public/images/button-cross.gif" alt="Delete" title="Delete" /></a></td>
   </tr>
   <?php } ?>
   </table>

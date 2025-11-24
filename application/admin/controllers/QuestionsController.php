@@ -28,10 +28,10 @@ class Admin_QuestionsController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // Получаем идентификатор теста
+        // Get test identifier
         $test_id = (int) $this->_request->getParam('test', 0);
 
-        $this->view->title = 'Вопросы теста';
+        $this->view->title = 'Test Questions';
         $this->view->test_id   = $test_id;
         $this->view->questions = Default_Model_Question::findQuestionsByTest($test_id);
         $this->render();
@@ -105,7 +105,7 @@ class Admin_QuestionsController extends Zend_Controller_Action
         $test_id = (int) $this->_request->getParam('test', 0);
 
         $this->view->test_id = $test_id;
-        $this->view->title = 'Создание вопроса';
+        $this->view->title = 'Create Question';
         $this->render();
     }
 
@@ -115,10 +115,10 @@ class Admin_QuestionsController extends Zend_Controller_Action
         $test_id = (int) $this->_request->getParam('test', 0);
         $qst_id  = (int) $this->_request->getParam('qst', 0);
 
-        // Удаляем вопрос
+        // Delete question
         Default_Model_Question::deleteQuestion($qst_id);
 
-        // возвращаемся к списку тестов
+        // return to test list
         $this->redirect('/admin/questions/index/test/' . $test_id);
     }
 
@@ -147,7 +147,7 @@ class Admin_QuestionsController extends Zend_Controller_Action
 
         $answers = Default_Model_Question::findAnswersByQuestionId($qst_id);
         if (sizeof($answers) < 1) {
-            throw new Exception('Вопрос не содержит вариантов ответа!');
+            throw new Exception('Question has no answer options!');
         }
 
 
@@ -243,7 +243,7 @@ class Admin_QuestionsController extends Zend_Controller_Action
                 break;
         }
 
-        $this->view->title       = 'Статистика по вопросу';
+        $this->view->title       = 'Question Statistics';
         $this->view->test_id     = $test_id;
         $this->view->question    = $question;
         $this->view->variants    = $answers;

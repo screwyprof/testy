@@ -31,14 +31,14 @@ class Tests_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = 'Выбор теста';
+        $this->view->title = 'Select Test';
         $this->view->tests = Default_Model_Test::findAllActiveTests();
         $this->render();
     }
 
     public function test1Action()
     {
-        // Получаем данные теста
+        // Get test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
         if ($this->_request->isPost()) {
@@ -55,20 +55,20 @@ class Tests_IndexController extends Zend_Controller_Action
 
                 // Zend_Debug::dump($row);
                 $db = Zend_Registry::get('dbAdapter');
-                // вставка строки
+                // insert row
                 $db->insert('results_answers', $row);
             }
-            // Переходим на страницу результатов
+            // Go to results page
             $this->_redirect('/tests/index/results');
             return;
         }
 
         /*
-        // Если время на тест ограничено
+        // If test time is limited
         if ($_TEST->test_time > 0) {
-        // Если время на тест закончилось
+        // If test time has expired
         if($_TEST->stop_time < time()) {
-        // перейти на страницу результатов
+        // go to results page
         $this->_forward('results');
         return;
         }
@@ -84,12 +84,12 @@ class Tests_IndexController extends Zend_Controller_Action
 
             $question = Default_Model_Question::findQuestionById($_TEST->qst_id);
             if (is_null($question)) {
-                throw new Exception('Вопрос не найден в базе данных!');
+                throw new Exception('Question not found in database!');
             }
 
             $answers = Default_Model_Question::findAnswersByQuestionId($_TEST->qst_id);
             if (sizeof($answers) < 1) {
-                throw new Exception('Вопрос не содержит вариантов ответа!');
+                throw new Exception('Question has no answer options!');
             }
 
             $vr_order = array();
@@ -111,7 +111,7 @@ class Tests_IndexController extends Zend_Controller_Action
             $variants[$qst_curr] = $tmp;
         }
 
-        $this->view->title       = 'Тестирование';
+        $this->view->title       = 'Taking Test';
         $this->view->test_time   = $_TEST->test_time;
         $this->view->qst_curr    = $_TEST->qst_curr;
         $this->view->qst_count   = $_TEST->qst_count;
@@ -122,7 +122,7 @@ class Tests_IndexController extends Zend_Controller_Action
 
     public function testAction()
     {
-        // Получаем данные теста
+        // Get test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
         if (isset($_TEST->qst_id)) {
@@ -136,7 +136,7 @@ class Tests_IndexController extends Zend_Controller_Action
             $db = Zend_Registry::get('dbAdapter');
             $row = Default_Model_Question::checkAnswers($_TEST->qst_id, $_TEST->qst_curr, $answers);
 
-            // сохраняем ответ в базе данных
+            // save answer to database
             $db->insert('results_answers', $row);
 
             unset($_TEST->qst_id);
@@ -149,20 +149,20 @@ class Tests_IndexController extends Zend_Controller_Action
         }
 
         /*
-        // Если время на тест ограничено
+        // If test time is limited
         if ($_TEST->test_time > 0) {
-        // Если время на тест закончилось
+        // If test time has expired
         if($_TEST->stop_time < time()) {
-        // перейти на страницу результатов
+        // go to results page
         $this->_redirect('/tests/index/results');
         return;
         }
         }
         */
 
-        // Если больше не осталось вопросов
+        // If no more questions left
         if ($_TEST->qst_curr >= $_TEST->qst_count) {
-            // то переходим на страницу результатов
+            // then go to results page
             $this->_redirect('/tests/index/results');
             return;
         }
@@ -174,12 +174,12 @@ class Tests_IndexController extends Zend_Controller_Action
 
         $question = Default_Model_Question::findQuestionById($_TEST->qst_id);
         if (is_null($question)) {
-            throw new Exception('Вопрос не найден в базе данных!');
+            throw new Exception('Question not found in database!');
         }
 
         $variants = Default_Model_Question::findAnswersByQuestionId($_TEST->qst_id);
         if (sizeof($variants) < 1) {
-            throw new Exception('Вопрос не содержит вариантов ответа!');
+            throw new Exception('Question has no answer options!');
         }
 
         $vr_order = array();
@@ -200,7 +200,7 @@ class Tests_IndexController extends Zend_Controller_Action
 
         $_TEST->vr_order[$_TEST->qst_curr] = $vr_order;
 
-        $this->view->title       = 'Тестирование';
+        $this->view->title       = 'Taking Test';
         $this->view->qst_curr    = $_TEST->qst_curr;
         $this->view->question    = $question;
         $this->view->variants    = $variants;
@@ -211,7 +211,7 @@ class Tests_IndexController extends Zend_Controller_Action
 
     public function resultsAction()
     {
-        // Получаем данные теста
+        // Get test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
         if (!isset($_TEST->test_id)) {
@@ -266,10 +266,10 @@ class Tests_IndexController extends Zend_Controller_Action
 
         $qst_per_page = $_TEST->qst_per_page;
 
-        // Удаляем данные теста
+        // Delete test data
         $_TEST->unsetAll();
 
-        $this->view->title      = 'Результаты тестирования';
+        $this->view->title      = 'Test Results';
         $this->view->result     = $result;
         $this->view->mark       = $mark;
         $this->view->results    = $results;
@@ -282,22 +282,22 @@ class Tests_IndexController extends Zend_Controller_Action
 
     public function showAction()
     {
-        // Получаем идентификатор ответа
+        // Get answer identifier
         $id = (int) $this->_request->getParam('id', 0);
 
         $result = Default_Model_Test::findResultById($id);
         if (is_null($result)) {
-            throw new Exception('Рузультат не найден в базе данных!');
+            throw new Exception('Result not found in database!');
         }
 
         $question = Default_Model_Question::findQuestionById($result['qst_id']);
         if (is_null($question)) {
-            throw new Exception('Вопрос не найден в базе данных!');
+            throw new Exception('Question not found in database!');
         }
 
         $variants = Default_Model_Question::findAnswersByQuestionId($result['qst_id']);
         if (sizeof($variants) < 1) {
-            throw new Exception('Вопрос не содержит вариантов ответа!');
+            throw new Exception('Question has no answer options!');
         }
 
         $vr_order = array();
@@ -358,7 +358,7 @@ class Tests_IndexController extends Zend_Controller_Action
                 break;
         }
 
-        $this->view->title     = 'Просмотр ответов на вопрос';
+        $this->view->title     = 'View Question Answers';
         $this->view->question  = $question;
         $this->view->variants  = $answers;
         $this->view->usransw   = $usransw;
@@ -369,19 +369,19 @@ class Tests_IndexController extends Zend_Controller_Action
 
     public function startAction()
     {
-        // Получаем данные теста
+        // Get test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
-        // Если сессия не существует
+        // If session doesn't exist
         if (!isset($_TEST->test_id)) {
 
-            // Получаем идентификатор теста
+            // Get test identifier
             $test_id = (int) $this->_request->getParam('id', 0);
             if ($test_id < 1) {
-                throw new Exception('Вы не выбрали ни одного теста!');
+                throw new Exception('You have not selected any test!');
             }
 
-            // Генерируем данные сессии
+            // Generate session data
             Default_Model_Test::generate($test_id);
         }
 

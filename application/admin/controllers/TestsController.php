@@ -28,7 +28,7 @@ class Admin_TestsController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = 'Управление тестами';
+        $this->view->title = 'Manage Tests';
         $this->view->tests = Default_Model_Test::findAllTests();
         $this->render();
     }
@@ -84,7 +84,7 @@ class Admin_TestsController extends Zend_Controller_Action
             }
         }
 
-        $this->view->title = 'Создание теста';
+        $this->view->title = 'Create Test';
         $this->render();
     }
 
@@ -156,7 +156,7 @@ class Admin_TestsController extends Zend_Controller_Action
             }
         }
 
-        $this->view->title = 'Свойства теста';
+        $this->view->title = 'Test Properties';
         $this->render();
     }
 
@@ -165,7 +165,7 @@ class Admin_TestsController extends Zend_Controller_Action
         $test_id = (int) $this->_request->getParam('id', 0);
         Default_Model_Test::deleteTest($test_id);
 
-        // возвращаемся к списку тестов
+        // return to test list
         $this->redirect('/admin/tests');
     }
 

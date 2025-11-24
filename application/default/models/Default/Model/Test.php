@@ -145,39 +145,39 @@ class Default_Model_Test
 
     public static function generate($test_id = 0)
     {
-        // Создаем окружение для данных тестирования
+        // Create environment for test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
-        // Запрашиваем информацию о тесте
+        // Get test information
         $test = Default_Model_Test::findTestById($test_id);
         $curr_time = time();
 
-        // Проверям наличие теста в базе данных
+        // Check if test exists in database
         if (is_null($test)) {
-            throw new Exception('Тест не найден в базе данных!');
+            throw new Exception('Test not found in database!');
         }
 
-        // Проверяем "доступность" теста
+        // Check test "availability"
         if (!$test['test_is_enabled']) {
-            throw new Exception('Данный тест не активен!');
+            throw new Exception('This test is not active!');
         }
 
         if ($test['test_start_time'] > $curr_time) {
-            throw new Exception('Еще не пришло время сдавать данный тест!');
+            throw new Exception('It is not yet time to take this test!');
         }
 
         if ($test['test_stop_time'] < $curr_time) {
-            throw new Exception('Срок действия данного теста стек!');
+            throw new Exception('The time limit for this test has expired!');
         }
 
-        // Получаем список вопросов, выбранного теста
+        // Get list of questions for the selected test
         $questions = Default_Model_Test::findQuestionsIdByTest($test_id);
         $qst_count = sizeof($questions);
         if ($qst_count < 1) {
-            throw new Exception('В тесте нет доступных вопросов!');
+            throw new Exception('There are no available questions in the test!');
         }
 
-        // Перемешиваем вопросы
+        // Shuffle questions
         if ($test['test_is_mix_qst']) {
             shuffle($questions);
         }
@@ -214,18 +214,18 @@ class Default_Model_Test
         $usr_id = Zend_Auth::getInstance()->getIdentity()->usr_id;
         $db = Zend_Registry::get('dbAdapter');
 
-        // массив данных для подстановки в формате 'имя столбца' => 'значение'
+        // data array for insertion in format 'column_name' => 'value'
         $row = array(
             'rst_test_id'    => $test_id,
             'rst_usr_id'     => $usr_id,
             'rst_start_time' => $curr_time,
         );
 
-        // вставка строки и получение ID строки
+        // insert row and get row ID
         $db->insert('results', $row);
         $rst_id = $db->lastInsertId();
 
-        // Удаляем данные предыдущего теста
+        // Delete previous test data
         $_TEST->unsetAll();
         $_TEST->test_id      = $test_id;
         $_TEST->rst_id       = $rst_id;

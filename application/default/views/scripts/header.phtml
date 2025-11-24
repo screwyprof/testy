@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="cache-control" content="no-cache" />
@@ -24,10 +24,10 @@
       <div class="header-top">
         
         <!-- Sitelogo and sitename -->
-        <a class="sitelogo" href="<?php echo $this->baseUrl ?>/" title="Главная страница"></a>
+        <a class="sitelogo" href="<?php echo $this->baseUrl ?>/" title="Home Page"></a>
         <div class="sitename">
-          <h1><a href="<?php echo $this->baseUrl ?>/" title="Тестовая система">Тестовая система<span style="font-weight:normal;font-size:50%;">&nbsp;версия 1.0.1</span></a></h1>
-          <h2><a href="mailto:shcherbo@yandex.ru">Автор: Щербо Максим</a></h2>
+          <h1><a href="<?php echo $this->baseUrl ?>/" title="Test System">Test System<span style="font-weight:normal;font-size:50%;">&nbsp;version 1.0.1</span></a></h1>
+          <h2><a href="mailto:shcherbo@yandex.ru">Author: Maksim Shcherbo</a></h2>
         </div>
 <?php
 /*        
@@ -44,10 +44,10 @@
         <!-- Navigation Level 1 -->
         <div class="nav1">
           <ul>
-            <li><a href="<?php echo $this->baseUrl ?>/admin" title="Административная панель">Администрирование</a></li>
-            <li><a href="#" title="Справка">Справка</a></li>
+            <li><a href="<?php echo $this->baseUrl ?>/admin" title="Admin Panel">Admin Panel</a></li>
+            <li><a href="#" title="Help">Help</a></li>
             <?php if ($this->user) { ?>
-            <li><a href="<?php echo $this->baseUrl ?>/auth/logout" title="Выход из системы">Выход</a></li>
+            <li><a href="<?php echo $this->baseUrl ?>/auth/logout" title="Logout">Logout</a></li>
             <?php } ?>
           </ul>
         </div>              

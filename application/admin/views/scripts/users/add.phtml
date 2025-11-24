@@ -3,29 +3,29 @@
 <div class="column1-unit">
   <div class="contactform">
     <form action="<?php echo $this->baseUrl?>/admin/users/add" method="post">
-    <fieldset> <legend>&nbsp;Параметры пользователя&nbsp;</legend>
+    <fieldset> <legend>&nbsp;User Parameters&nbsp;</legend>
 
-      <p><label for="usr_is_enabled" class="left">Пользователь активен:</label>
+      <p><label for="usr_is_enabled" class="left">User Active:</label>
          <input type="checkbox" name="usr_is_enabled" id="usr_is_enabled"
                 class="checkbox" checked="true" tabindex="1" />
       </p>
 
-      <p><label for="usr_login" class="left">Логин:</label>
+      <p><label for="usr_login" class="left">Username:</label>
          <input type="text" name="usr_login" id="usr_login"
                 value="" class="field" tabindex="2" />
       </p>
 
-      <p><label for="usr_lastname" class="left">Фамилия:</label>
+      <p><label for="usr_lastname" class="left">Last Name:</label>
          <input type="text" name="usr_lastname" id="usr_lastname"
                 value="" class="field" tabindex="3" />
       </p>
 
-      <p><label for="usr_firstname" class="left">Имя:</label>
+      <p><label for="usr_firstname" class="left">First Name:</label>
          <input type="text" name="usr_firstname" id="usr_firstname"
                 value="" class="field" tabindex="4" />
       </p>
 
-      <p><label for="usr_thirdname" class="left">Отчество:</label>
+      <p><label for="usr_thirdname" class="left">Middle Name:</label>
          <input type="text" name="usr_thirdname" id="usr_thirdname"
                 value="" class="field" tabindex="5" />
       </p>
@@ -35,22 +35,22 @@
                 value="" class="field" tabindex="6" />
       </p>
 
-      <p><label for="usr_passwd" class="left">Пароль:</label>
+      <p><label for="usr_passwd" class="left">Password:</label>
          <input type="password" name="usr_passwd" id="usr_passwd"
                 value="" class="field" tabindex="7" />
       </p>
 
-      <p><label for="usr_role" class="left">Тип пользователя:</label>
+      <p><label for="usr_role" class="left">User Type:</label>
          <select name="usr_role" id="usr_role" class="combo">
-           <option value="u">Пользователь</option>
-           <option value="e">Редактор</option>
-           <option value="a">Администратор</option>
+           <option value="u">User</option>
+           <option value="e">Editor</option>
+           <option value="a">Administrator</option>
          </select>
       </p>
 
       <p>
-        <input type="submit" name="cancel" id="cancel" class="button" value="Отмена" tabindex="9" />
-        <input type="submit" name="submit" id="submit" class="button" value="Создать" tabindex="10" />
+        <input type="submit" name="cancel" id="cancel" class="button" value="Cancel" tabindex="9" />
+        <input type="submit" name="submit" id="submit" class="button" value="Create" tabindex="10" />
       </p>
     </fieldset>
     </form>

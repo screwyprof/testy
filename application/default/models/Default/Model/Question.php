@@ -80,7 +80,7 @@ class Default_Model_Question
 
     public static function checkAnswers($qst_id, $qst_curr, $useranswers)
     {
-        // Получаем данные теста
+        // Get test data
         $_TEST = new Zend_Session_Namespace('TEST');
 
         if (is_null($useranswers)) {
@@ -93,12 +93,12 @@ class Default_Model_Question
 
         $question = Default_Model_Question::findQuestionById($qst_id);
         if (is_null($question)) {
-            throw new Exception('Вопрос не найден в базе данных!');
+            throw new Exception('Question not found in database!');
         }
 
         $variants = Default_Model_Question::findAnswersByQuestionId($qst_id);
         if (sizeof($variants) < 1) {
-            throw new Exception('Вопрос не содержит вариантов ответа!');
+            throw new Exception('Question has no answer options!');
         }
 
         $vr_order = $_TEST->vr_order[$qst_curr];

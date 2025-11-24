@@ -28,7 +28,7 @@ class Admin_IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = 'Администрирование';
+        $this->view->title = 'Admin Panel';
         $this->render();
     }
 

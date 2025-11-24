@@ -40,7 +40,7 @@ class Admin_ReportsController extends Zend_Controller_Action
         );
         $results = Default_Model_Report::findAllEndResults($order);
 
-        $this->view->title   = 'Отчеты';
+        $this->view->title   = 'Reports';
         $this->view->results =  $results;
         $this->render();
     }
@@ -48,18 +48,6 @@ class Admin_ReportsController extends Zend_Controller_Action
     public function deleteAction()
     {
         if ($this->_request->isPost()) {
-
-            /*
-            $ids = $this->_request->getPost('id', 0);
-
-            if (! is_array($ids)) {
-            $ids = array($ids);
-            }
-
-            foreach ($ids as $id) {
-            Report::deleteResult($id);
-            }*/
-
             $filter = new Zend_Filter_Alpha();
             $id  = (int)$this->_request->getPost('id', 0);
             $del = $filter->filter($this->_request->getPost('del'));
@@ -69,63 +57,63 @@ class Admin_ReportsController extends Zend_Controller_Action
         } else {
             $id = (int)$this->_request->getParam('id', 0);
             $this->view->result = Default_Model_Report::findResultById($id);
-            $this->view->title = 'Удаление результата';
+            $this->view->title = 'Delete Result';
             $this->render();
             return;
         }
 
-        // возвращаемся к списку результатов
+        // return to results list
         $this->redirect('/admin/reports');
     }
 
     public function resultsAction()
     {
-        // Получаем идентификатор результата теста
+        // Get test result identifier
         $rst_id = (int) $this->_request->getParam('id', 0);
 
-        // Получаем информацию о результате теста
+        // Get test result information
         $result_info = Default_Model_Report::findResultById($rst_id);
         if (is_null($result_info)) {
-            throw new Exception('Результат теста не найден в базе данных!');
+            throw new Exception('Test result not found in database!');
         }
 
-        // Получаем все ответы для этого результата теста
+        // Get all answers for this test result
         $results = Default_Model_Test::findResultAnswers($rst_id);
         for ($i = 0; $i < sizeof($results); $i++) {
             $question = Default_Model_Question::findQuestionById($results[$i]['qst_id']);
             $results[$i]['question'] = $question['qst_text'];
         }
 
-        $this->view->title      = 'Результаты тестирования: ' . $result_info['test_title'];
+        $this->view->title      = 'Test Results: ' . $result_info['test_title'];
         $this->view->result     = $result_info['rst_points'];
         $this->view->mark       = $result_info['rst_mark'];
         $this->view->results    = $results;
         $this->view->test_title = $result_info['test_title'];
         $this->view->start_time = date('d.m.Y, H:i:s', $result_info['rst_start_time']);
         $this->view->time_spent = date('H:i:s', $result_info['rst_time_spent']);
-        $this->view->qst_per_page = 0; // Показываем время для каждого вопроса
-        $this->view->rst_id = $rst_id; // Для ссылок на детали
+        $this->view->qst_per_page = 0; // Show time for each question
+        $this->view->rst_id = $rst_id; // For detail links
         $this->render();
     }
 
     public function detailsAction()
     {
-        // Получаем идентификатор ответа
+        // Get answer identifier
         $id = (int) $this->_request->getParam('id', 0);
 
         $result = Default_Model_Test::findResultById($id);
         if (is_null($result)) {
-            throw new Exception('Рузультат не найден в базе данных!');
+            throw new Exception('Result not found in database!');
         }
 
         $question = Default_Model_Question::findQuestionById($result['qst_id']);
         if (is_null($question)) {
-            throw new Exception('Вопрос не найден в базе данных!');
+            throw new Exception('Question not found in database!');
         }
 
         $variants = Default_Model_Question::findAnswersByQuestionId($result['qst_id']);
         if (sizeof($variants) < 1) {
-            throw new Exception('Вопрос не содержит вариантов ответа!');
+            throw new Exception('Question has no answer options!');
         }
 
         $vr_order = array();
@@ -186,7 +174,7 @@ class Admin_ReportsController extends Zend_Controller_Action
                 break;
         }
 
-        $this->view->title     = 'Просмотр ответов на вопрос';
+        $this->view->title     = 'View Question Answers';
         $this->view->question  = $question;
         $this->view->variants  = $answers;
         $this->view->usransw   = $usransw;

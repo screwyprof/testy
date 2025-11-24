@@ -11,7 +11,7 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = 'Главная страница';
+        $this->view->title = 'Home Page';
         $this->render();
     }
 

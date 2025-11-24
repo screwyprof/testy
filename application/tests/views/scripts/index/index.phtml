@@ -3,16 +3,16 @@
 <div class="column1-unit">
   <table>
   <tr>
-      <th class="top" scope="col">Название теста</th>
-      <th class="top" scope="col">Описание теста</th>
-      <th class="top" scope="col">Действие</th>
+      <th class="top" scope="col">Test Name</th>
+      <th class="top" scope="col">Description</th>
+      <th class="top" scope="col">Action</th>
   </tr>
   <?php foreach($this->tests as $test) { ?>
   <tr>
       <td><?php echo $this->escape($test['test_title']);?></td>
       <td><?php echo $this->escape($test['test_desc']);?></td>
       <td>
-        <a href="<?php echo $this->baseUrl;?>/tests/index/start/id/<?php echo $test['test_id'];?>">Начать тест</a>
+        <a href="<?php echo $this->baseUrl;?>/tests/index/start/id/<?php echo $test['test_id'];?>">Start Test</a>
       </td>
   </tr>
   <?php } ?>

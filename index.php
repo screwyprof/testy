@@ -9,10 +9,10 @@ date_default_timezone_set('Europe/Moscow');
 
 require_once 'vendor/autoload.php';
 
-// загрузка конфигурации
+// load configuration
 $config = new Zend_Config_Ini('./application/config.ini', 'general');
 
-// настройка базы данных
+// database setup
 $dbAdapter = Zend_Db::factory(
     $config->db->adapter,
     $config->db->config->toArray()
@@ -21,7 +21,7 @@ Zend_Db_Table::setDefaultAdapter($dbAdapter);
 
 // $dbAdapter->query("SET NAMES 'utf8';");
 
-// настройка реестра
+// registry setup
 Zend_Registry::set('config', $config);
 Zend_Registry::set('dbAdapter', $dbAdapter);
 

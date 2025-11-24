@@ -5,8 +5,8 @@
 
   <table>
   <tr>
-    <td><a href="<?php echo $this->baseUrl?>/admin">Администрирование</a></td>
-    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Отчеты</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin">Admin Panel</a></td>
+    <td><a href="<?php echo $this->baseUrl?>/admin/reports">Reports</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -17,14 +17,14 @@
   <table>
   <tr>
   <?php /* <th class="top" scope="col" width="2%">&nbsp;</th>*/ ?>
-      <th class="top" scope="col" width="10%">Дата</th>
-      <th class="top" scope="col" width="20%">Пользователь</th>
-      <th class="top" scope="col">Тест</th>
-      <th class="top" scope="col" width="10%">Время</th>
+      <th class="top" scope="col" width="10%">Date</th>
+      <th class="top" scope="col" width="20%">User</th>
+      <th class="top" scope="col">Test</th>
+      <th class="top" scope="col" width="10%">Time</th>
       <th class="top" scope="col">%</th>
-      <th class="top" scope="col">Оценка</th>
-      <th class="top" scope="col">Превышено</th>
-      <th class="top" scope="col" width="15%">Действие</th>
+      <th class="top" scope="col">Grade</th>
+      <th class="top" scope="col">Exceeded</th>
+      <th class="top" scope="col" width="15%">Action</th>
   </tr>
   <?php foreach($this->results as $result) { ?>
   <tr>
@@ -41,8 +41,8 @@
       <td><?php echo $this->escape($result['rst_mark']);?></td>
       <td><?php echo $this->escape($result['rst_is_time_exceeded']);?></td>
       <td>
-        <a href="<?php echo $this->baseUrl;?>/admin/reports/results/id/<?php echo $result['rst_id'];?>">Детально</a><br />
-        <a href="<?php echo $this->baseUrl;?>/admin/reports/delete/id/<?php echo $result['rst_id'];?>">Удалить</a>
+        <a href="<?php echo $this->baseUrl;?>/admin/reports/results/id/<?php echo $result['rst_id'];?>">Details</a><br />
+        <a href="<?php echo $this->baseUrl;?>/admin/reports/delete/id/<?php echo $result['rst_id'];?>">Delete</a>
       </td>
   </tr>
   <?php } ?>

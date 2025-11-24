@@ -7,12 +7,12 @@
   <form action="<?php echo $this->baseUrl ?>/admin/users/delete" method="post">
  <table>
   <tr>
-      <th class="top" scope="col">Пользователь</th>
-      <th class="top" scope="col">Фамилия</th>
-      <th class="top" scope="col">Имя</th>
-      <th class="top" scope="col">Отчество</th>
+      <th class="top" scope="col">Username</th>
+      <th class="top" scope="col">Last Name</th>
+      <th class="top" scope="col">First Name</th>
+      <th class="top" scope="col">Middle Name</th>
       <th class="top" scope="col">e-mail</th>
-      <th class="top" scope="col">Активен</th>
+      <th class="top" scope="col">Active</th>
   </tr>
   <tr>
       <td><?php echo $this->escape($this->usr['usr_login']);?></td>
@@ -27,7 +27,7 @@
 
 	<table>
 	<tr>
-	  <td>Вы действительно хотите удалить пользователя?</td>
+	  <td>Are you sure you want to delete this user?</td>
 	</tr>
 	<tr>
 	  <td>
@@ -42,7 +42,7 @@
   </fieldset>
   </div>
   <?php } else { ?>
-  <p>Пользователь не найден в базе данных.</p>
+  <p>User not found in database.</p>
   <?php }?>
 </div>
 <hr class="clear-contentunit" />

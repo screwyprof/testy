@@ -7,9 +7,9 @@ class Admin_Validate_TestStartTime extends Zend_Validate_Abstract
     const BACKWARDS    = 'backwards';
 
     protected $_messageTemplates = array(
-        self::WRONG_FORMAT => "Неверный формат даты и времени.",
-        self::PAST_TIME    => "Вы пытаетесь указать время, которое прошло.",
-        self::BACKWARDS    => "Время начала теста не может быть позже даты конца теста.",
+        self::WRONG_FORMAT => "Invalid date and time format.",
+        self::PAST_TIME    => "You are trying to specify a time that has already passed.",
+        self::BACKWARDS    => "Test start time cannot be later than test end time.",
     );
 
     /**

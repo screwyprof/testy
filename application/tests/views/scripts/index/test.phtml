@@ -72,7 +72,7 @@
          <th><?php echo $i ?></th>
          <td>
           <select name="v[<?php echo $this->escape($this->qst_curr);?>][]" id="v<?php echo $i + 1;?>" class="combo">
-            <option  value="0">Выберите порядок</option>
+            <option  value="0">Select Order</option>
             <?php foreach ($this->variants as $j => $variant) { ?>
                <option value="<?php echo $j + 1?>"<?php if ($this->is_show_ans  && $variant['ans_is_correct'] == $i) { ?> selected="true" <?php }?>><?php echo $variant['ans_text']?></option>
              <?php  }?>
@@ -85,7 +85,7 @@
       }
       ?>
       </table>
-      <p><input type="submit" name="submit" class="button" value="Далее" /></p>
+      <p><input type="submit" name="submit" class="button" value="Next" /></p>
   	 </fieldset>
     </form>
   </div>
