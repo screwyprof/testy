@@ -70,13 +70,3 @@ In one-per-page mode, answers are written to the database on each question submi
 
 **Consequence**: session expiry mid-test = lost progress, no recovery.
 
-## Limitations
-
-| Area | Issue |
-|------|-------|
-| Framework | ZF1 is EOL; community fork |
-| Storage | No transactions or FK constraints used (see [database.md](database.md)) |
-| Security | MD5 passwords, no salt, roles not enforced consistently |
-| State | Session-only test progress, no recovery |
-| Scale | Single server, vertical only |
-| Interface | Server-rendered HTML, no REST API |
