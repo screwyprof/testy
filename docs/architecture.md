@@ -68,5 +68,4 @@ When a student starts a test, all state goes into PHP session:
 
 In one-per-page mode, answers are written to the database on each question submission. In all-on-page mode, all answers are submitted at once. Navigation state, question selection, and shuffle order exist only in the session.
 
-**Consequence**: session expiry mid-test = lost progress, no recovery.
-
+**Session loss**: test state lives in PHP session. Session expiry = lost progress, no recovery. In practice never an issue — tests are short enough to complete within session lifetime.

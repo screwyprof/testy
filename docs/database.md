@@ -107,17 +107,4 @@ Indexes on `rst_test_id`, `rst_usr_id`.
 
 Indexes on `rst_id`, `qst_id`.
 
-## Scoring
-
-Per-question score stored in `results_answers.ans_percents`.
-Total score in `results.rst_points` = average of per-question percentages.
-
-### Grade Scale
-
-| Score | Grade |
-|-------|-------|
-| 90–100% | 5 (excellent) |
-| 70–89% | 4 (good) |
-| 50–69% | 3 (satisfactory) |
-| 40–49% | 2 (unsatisfactory) |
-| 0–39% | 1 (fail) |
+Scoring behavior and grade scale documented in [use-cases.md](use-cases.md#scoring).

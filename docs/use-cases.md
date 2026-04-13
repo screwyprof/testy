@@ -41,9 +41,10 @@ Admins have all teacher capabilities plus user management.
    - Shuffle questions, shuffle answers (flags)
    - Show correct answers after completion (flag)
    - Display mode: one per page / all per page
-3. Add questions — select type, enter text, enter answer variants with correct marking
+3. Add questions — select type, enter text, enter answer variants with correct marking (no editing after creation — delete and recreate)
 4. Enable test
-5. Test becomes visible to students when within availability window
+5. Delete test (cascades — removes all questions, results, and result answers)
+6. Test becomes visible to students when within availability window
 
 ![Test list](images/screenshots/04-admin-tests.png)
 
@@ -60,6 +61,18 @@ Admins have all teacher capabilities plus user management.
 | 3 | Single choice | Radio buttons | All or nothing |
 | 4 | Multiple selection | Checkboxes | Partial credit: 100%/N per correct pick; any wrong pick = 0% |
 | 5 | Ranking | Priority dropdowns | All or nothing |
+
+### Scoring
+
+Total score = average of per-question percentages (0–100%).
+
+| Score | Grade |
+|-------|-------|
+| 90–100% | 5 (excellent) |
+| 70–89% | 4 (good) |
+| 50–69% | 3 (satisfactory) |
+| 40–49% | 2 (unsatisfactory) |
+| 0–39% | 1 (fail) |
 
 ### Analyse Question Effectiveness
 
@@ -125,8 +138,14 @@ All questions on a single page with a countdown timer. Submitted at once.
 
 ![Answer detail with correct answers shown](images/screenshots/21-student-answer-correct.png)
 
-**Timer**: if a time limit is set, the system checks elapsed time on each submission. Exceeding the limit auto-finishes the test. In all-on-page mode, a countdown timer is visible at the top. In one-per-page mode, enforcement is server-side only — no visible timer.
+**Timer**: in all-on-page mode, a countdown timer is visible at the top. In one-per-page mode there is no visible timer. Time limit is checked only when the test is finalized — if exceeded, the result is flagged but the student is not stopped mid-test.
 
 **Per-question timing**: tracked only in one-per-page mode (results show "Time Taken" column). All-on-page mode has no per-question timing.
 
-**Session loss**: test state lives in PHP session. Session expiry = lost progress, no recovery. In practice never an issue — tests are short enough to complete within session lifetime.
+---
+
+## Known Limitations
+
+- Questions cannot be edited after creation — must delete and recreate
+- Time limit not enforced during test — only checked retroactively when finalizing results
+- Admin and educator roles share the same access in code — educator can reach user management by URL
